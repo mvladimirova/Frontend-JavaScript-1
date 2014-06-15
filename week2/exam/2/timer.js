@@ -8,7 +8,7 @@ $(document).ready(function(){
   var timeoutID = null;
 
   $("#minutes").on("change", function(){
-    var mins = parseInt($("#minutes").val(),10);
+    var mins = parseInt($("#minutes").val());
     if(mins > 60){
       $("#minutes").val("60");
     }
@@ -18,9 +18,9 @@ $(document).ready(function(){
   });
 
   $("#seconds").on("change", function(){
-    var secs = parseInt($("#seconds").val(),10);
+    var secs = parseInt($("#seconds").val());
     if(secs > 60){
-      $("#seconds").val("60");
+      $("#seconds").val("59");
     } else if(secs < 0){
       $("#seconds").val("0");
     }
@@ -28,10 +28,10 @@ $(document).ready(function(){
 
   $("#stop").on("click", function(){
     if(intervalID !== null){
-      window.clearInterval(intervalID);
+      clearInterval(intervalID);
     }
     if(timeoutID !== null){
-      window.clearTimeout(timeoutID);
+      clearTimeout(timeoutID);
     }
     currentMins = 0;
     currentSecs = 0;
@@ -39,44 +39,44 @@ $(document).ready(function(){
   });
 
   $("#count-up").on("click", function(){
-    currentMins = parseInt($("#minutes"),10);
-    currentSecs = parseInt($("#seconds"),10);
+    currentMins = parseInt($("#minutes").val());
+    currentSecs = parseInt($("#seconds").val());
     millSecs = 1000 * currentSecs + 60*1000*currentMins;
     currentSecs = 0;
     currentMins = 0;
     changeTimer(currentMins, currentSecs);
 
-    intervalID = window.setInterval(function(){
+    intervalID = setInterval(function(){
       changeTimer(currentMins, currentSecs);
       incrementSec();
     },1000);
     
-    timeoutID = window.setTimeout(function(){
-      window.clearInterval(intervalID);
+    timeoutID = setTimeout(function(){
+      clearInterval(intervalID);
     },millSecs + 1000);
   });
 
   $("#count-down").on("click",function(){
-    currentMins = parseInt($("#minutes"),10);
-    currentSecs = parseInt($("#seconds"),10);
+    currentMins = parseInt($("#minutes").val());
+    currentSecs = parseInt($("#seconds").val());
     changeTimer(currentMins,currentSecs);
     millSecs = 1000 * currentSecs + 60 * 1000 * currentMins;
 
-    intervalID = window.setInterval(function(){
+    intervalID = setInterval(function(){
       changeTimer(currentMins,currentSecs);
       decrementSec();
     },1000);
 
-    timeoutID = window.setTimeout(function(){
-      window.clearInterval(intervalID);
+    timeoutID = setTimeout(function(){
+      clearInterval(intervalID);
     },millSecs + 1000);
   });
 
   var changeTimer = function(min, sec){
-    $("#minute-first-digit").html(parseInt(min/10,10));
-    $("#minute-second-digit").html((min%10));
-    $("#second-first-digit").html(parseInt(sec/10,10));
-    $("#second-second-digit").html((sec%10));
+    $("#minute-first-digit").text(parseInt(min/10,10));
+    $("#minute-second-digit").text((min%10));
+    $("#second-first-digit").text(parseInt(sec/10,10));
+    $("#second-second-digit").text((sec%10));
   };
 
   var incrementSec = function(){
