@@ -48,7 +48,7 @@ var list = htmlGenerator.list({
         label: "Item 1"
     }, {
         label: "Item 2"
-    }];
+    }]
 })
 ```
 
@@ -225,3 +225,4 @@ The groups should be visually distinguishable, containing the students in them.
 You can be creative and randomly generated names for the groups.
 
 After we are done with this, we are going to add functionallity to localy save the groups!
+
