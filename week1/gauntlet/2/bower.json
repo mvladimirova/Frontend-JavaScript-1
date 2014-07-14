@@ -8,7 +8,6 @@
   "description": "The second task in the jQuery gauntlet of Hack Bulgaria's Frontend JavaScript course",
   "main": "index.html",
   "license": "MIT",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
