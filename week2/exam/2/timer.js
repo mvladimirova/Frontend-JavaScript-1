@@ -1,11 +1,12 @@
+/*globals $*/
 "use strict";
 
 $(document).ready(function(){
-  var currentMins = 0;
-  var currentSecs = 0;
-  var millSecs = 0;
-  var intervalID = null;
-  var timeoutID = null;
+  var currentMins = 0,
+   currentSecs = 0,
+   millSecs = 0,
+   intervalID = null,
+   timeoutID = null;
 
   $("#minutes").on("change", function(){
     var mins = parseInt($("#minutes").val());
@@ -50,7 +51,7 @@ $(document).ready(function(){
       changeTimer(currentMins, currentSecs);
       incrementSec();
     },1000);
-    
+
     timeoutID = setTimeout(function(){
       clearInterval(intervalID);
     },millSecs + 1000);
