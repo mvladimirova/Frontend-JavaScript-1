@@ -6,8 +6,8 @@
     duplicate = [];
 
   data.forEach(function (checkin){
-    var studentId = checkin.fields.student;
-    var foundDuplicate = false;
+    var studentId = checkin.fields.student,
+        foundDuplicate = false;
 
     if(unique[studentId]){
       unique[studentId].forEach(function (studentCheckIn){
