@@ -6,24 +6,35 @@ require.config({
 
 require(["Q"], function(Q) {
 
-  function first(callback) {
-    setTimeout(callback, 1000);
+  function first() {
+    var defer = Q.defer();
+    setTimeout(function(){
+      defer.resolve(42);
+    }, 1000);
+
+    return defer.promise;
   }
 
-  function second(callback) {
-    setTimeout(callback, 1000);
+  function second() {
+    var defer = Q.defer();
+
+    setTimeout(function(){
+      defer.resolve("sth");
+    }, 1000);
+
+    return defer.promise;
   }
 
   function third() {
     console.log("I should do the job after first and second");
   }
 
-  first(function() {
-    console.log("called first!");
-    second(function() {
-      console.log("called second!");
-      third();
-    });
-  });
+  Q.fcall(first)
+    .then(second)
+    .then(third)
+    .catch(function(error){
+      console.log(error);
+    })
+    .done();
 
 });
