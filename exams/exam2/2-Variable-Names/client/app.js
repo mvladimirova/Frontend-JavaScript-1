@@ -3,7 +3,8 @@ $(document).ready(function(){
 
   var source = $("#entry-template").html(),
       template = Handlebars.compile(source),
-      url = "http://localhost:8080/names";
+      url = "http://localhost:8080/names",
+      update = ".name-update";
 
   $.ajax({
     url: url,
@@ -17,11 +18,11 @@ $(document).ready(function(){
   });
 
   $("#names").on("click", ".name-input", function(){
-    $(".name-update").prop("disabled", true);
+    $(update).prop("disabled", true);
     $(this).siblings("button.name-update").prop("disabled", false);
   });
 
-  $("#names").on("click", ".name-update", function(){
+  $("#names").on("click", update, function(){
     var input = $(this).siblings("input.name-input"),
         name = input.val(),
         nameId = input.data("nameid");
