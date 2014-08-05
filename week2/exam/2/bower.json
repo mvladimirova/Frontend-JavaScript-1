@@ -1,0 +1,20 @@
+{
+  "name": "Timer",
+  "version": "0.0.0",
+  "homepage": "https://github.com/mvladimirova/Frontend-JavaScript-1",
+  "authors": [
+    "Marianna <marianna.vl.vladimirova@gmail.com>"
+  ],
+  "main": "timer.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0"
+  }
+}
