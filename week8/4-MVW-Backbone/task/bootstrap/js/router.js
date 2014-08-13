@@ -5,6 +5,9 @@ var GitHubApp = GitHubApp || {};
 var GitHubAppRouter = Backbone.Router.extend({
   routes: {
     // Add the appropriate routes
+    '': 'home',
+    'user/:username': 'user',
+    'statistics': 'stats'
   },
   initialize: function () {
     'use strict';
@@ -14,6 +17,12 @@ var GitHubAppRouter = Backbone.Router.extend({
     'use strict';
     // Invoke the FrontCtrl.setView and FrontCtrl.render
     // with appropriate parameters
+    GitHubApp.Controllers.FrontCtrl.setView({
+      partial: 'partials/home.tpl',
+      view: GitHubApp.Views.Home,
+      model: this.users
+    });
+    GitHubApp.Controllers.FrontCtrl.render();
   },
   user: function (login) {
     'use strict';
@@ -31,16 +40,27 @@ var GitHubAppRouter = Backbone.Router.extend({
     .done(function () {
       // Invoke the FrontCtrl.setView and FrontCtrl.render
       // with appropriate parameters
-    });
+      GitHubApp.Controllers.FrontCtrl.setView({
+        partial: 'partials/user.tpl',
+        view: GitHubApp.Views.User,
+        model: user
+      });
+      GitHubApp.Controllers.FrontCtrl.render();
+    }.bind(this));
   },
   stats: function () {
     'use strict';
-    GitHubApp.Controllers.FrontCtrl.setView({
-      partial: 'partials/stats.tpl',
-      view   : GitHubApp.Views.Stats,
-      model  : this.users
-    });
-    GitHubApp.Controllers.FrontCtrl.render();
+    $.when.apply($, this.users.map(function (user) {
+      return user.fetch();
+    }))
+    .done(function () {
+      GitHubApp.Controllers.FrontCtrl.setView({
+        partial: 'partials/stats.tpl',
+        view : GitHubApp.Views.Stats,
+        model : this.users
+      });
+      GitHubApp.Controllers.FrontCtrl.render();
+    }.bind(this));
   }
 });
 

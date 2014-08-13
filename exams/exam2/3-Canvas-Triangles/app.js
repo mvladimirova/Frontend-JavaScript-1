@@ -1,15 +1,14 @@
 $(document).ready(function (){
   "use strict";
-  var canvas = document.getElementById("triangles-canvas");
-  var width = canvas.width,
-    height = canvas.height;
-
-  var context = canvas.getContext("2d");
-  context.fillStyle = "black";
-
-  var points = [],
+  var canvas = document.getElementById("triangles-canvas"),
+      width = canvas.width,
+      height = canvas.height,
+      context = canvas.getContext("2d"),
+      points = [],
       allItems = [],
       name;
+
+  context.fillStyle = "black";
 
   function Point(x, y, context){
     this.x = x;
@@ -66,7 +65,7 @@ $(document).ready(function (){
   $("#save-button").on("click", function(){
     name = prompt("Name for the picture:");
     localStorage.setItem(name, canvas.toDataURL());
-    allItems.push({"name": name});
+    allItems.push({name: name});
     $("#img-load").empty();
     loadAllImages(allItems);
   });

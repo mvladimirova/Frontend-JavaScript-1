@@ -3,10 +3,25 @@
 
 $(document).ready(function(){
   var currentMins = 0,
-   currentSecs = 0,
-   millSecs = 0,
-   intervalID = null,
-   timeoutID = null;
+    currentSecs = 0,
+    millSecs = 0,
+    intervalID = null,
+    timeoutID = null,
+    countUp = "#count-up",
+    countDown = "#count-down",
+    enteredMins = parseInt($("#minutes").val()),
+    enteredSecs = parseInt($("#seconds").val());
+
+    $(countUp).attr("disabled", false);
+    $(countDown).attr("disabled", false);
+
+    if(isNaN(enteredMins)){
+      enteredMins = 0;
+    }
+
+    if(isNaN(enteredSecs)){
+      enteredSecs = 0;
+    }
 
   $("#minutes").on("change", function(){
     var mins = parseInt($("#minutes").val());
@@ -37,11 +52,16 @@ $(document).ready(function(){
     currentMins = 0;
     currentSecs = 0;
     changeTimer(currentMins, currentSecs);
+    $(countUp).attr("disabled", false);
+    $(countDown).attr("disabled", false);
   });
 
-  $("#count-up").on("click", function(){
-    currentMins = parseInt($("#minutes").val());
-    currentSecs = parseInt($("#seconds").val());
+  $(countUp).on("click", function(){
+    $(countDown).attr("disabled", "disabled");
+
+    currentMins = enteredMins;
+    currentSecs = enteredSecs;
+
     millSecs = 1000 * currentSecs + 60*1000*currentMins;
     currentSecs = 0;
     currentMins = 0;
@@ -57,9 +77,12 @@ $(document).ready(function(){
     },millSecs + 1000);
   });
 
-  $("#count-down").on("click",function(){
-    currentMins = parseInt($("#minutes").val());
-    currentSecs = parseInt($("#seconds").val());
+  $(countDown).on("click",function(){
+    $(countUp).attr("disabled", "disabled");
+
+    currentMins = enteredMins;
+    currentSecs = enteredSecs;
+
     changeTimer(currentMins,currentSecs);
     millSecs = 1000 * currentSecs + 60 * 1000 * currentMins;
 
