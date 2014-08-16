@@ -5,19 +5,19 @@ function Point(x,y){
   this.y = y;
 
   this.xInc = function(){
-    return this.x + 1;
+    return this.x += 1;
   };
 
   this.xDec = function(){
-    return this.x - 1;
+    return this.x -= 1;
   };
 
   this.yInc = function(){
-    return this.y + 1;
+    return this.y += 1;
   };
 
   this.yDec = function(){
-    return this.y - 1;
+    return this.y -= 1;
   };
 }
 
