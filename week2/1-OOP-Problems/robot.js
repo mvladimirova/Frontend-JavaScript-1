@@ -31,11 +31,13 @@ Point.prototype.toString = function(){
 
 function Robot(startPoint){
 
+  this.startPoint = startPoint;
+
   this.moveLeft = function(amount){
     var moved = 0;
 
     while(moved < amount){
-      startPoint.xDec();
+      this.startPoint.xDec();
       moved += 1;
     }
   };
@@ -44,7 +46,7 @@ function Robot(startPoint){
     var moved = 0;
 
     while(moved < amount){
-      startPoint.xInc();
+      this.startPoint.xInc();
       moved += 1;
     }
   };
@@ -53,7 +55,7 @@ function Robot(startPoint){
     var moved = 0;
 
     while(moved < amount){
-      startPoint.yDec();
+      this.startPoint.yDec();
       moved += 1;
     }
   };
@@ -62,13 +64,13 @@ function Robot(startPoint){
     var moved = 0;
 
     while(moved < amount){
-      startPoint.yInc();
+      this.startPoint.yInc();
       moved += 1;
     }
   };
 
   this.getPosition = function(){
-    return startPoint;
+    return this.startPoint;
   };
 }
 
