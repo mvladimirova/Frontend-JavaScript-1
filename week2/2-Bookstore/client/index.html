@@ -8,77 +8,40 @@
 <body>
     <div class="container">
         <h1>HackBulgaria's Bookstore</h1>
-        <div class="row">
-            <div class="col-xs-4">
-                <h3>Good Omens: The Nice and Accurate Prophecies of Agnes Nutter, Witch</h3>
-                <img src="https://d.gr-assets.com/books/1392528568m/12067.jpg">
-                <p>Averege rating: 4.27</p>
-                <p>ISBN: 60853980</p>
-                <button class="btn btn-info">Read description</button>
-                <button class="btn btn-success">Add to Cart</button>
-            </div>
-            <div class="col-xs-4">
-                <h3>Night Watch &amp; &#35;40;Discworld, #29&#41;</h3>
-                <img src="https://d.gr-assets.com/books/1320518310m/47989.jpg">
-                <p>Averege rating: 4.27</p>
-                <p>ISBN: 055215430X</p>
-                <button class="btn btn-info">Read description</button>
-                <button class="btn btn-success">Add to Cart</button>
-            </div>
-            <div class="col-xs-4">
-                <h3>Good Omens: The Nice and Accurate Prophecies of Agnes Nutter, Witch</h3>
-                <img src="https://d.gr-assets.com/books/1392528568m/12067.jpg">
-                <p>Averege rating: 4.27</p>
-                <p>ISBN: 60853980</p>
-                <button class="btn btn-info">Read description</button>
-                <button class="btn btn-success">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-xs-4">
-                <h3>Good Omens: The Nice and Accurate Prophecies of Agnes Nutter, Witch</h3>
-                <img src="https://d.gr-assets.com/books/1392528568m/12067.jpg">
-                <p>Averege rating: 4.27</p>
-                <p>ISBN: 60853980</p>
-                <button class="btn btn-info">Read description</button>
-                <button class="btn btn-success">Add to Cart</button>
-            </div>
-            <div class="col-xs-4">
-                <h3>Night Watch &amp; &#35;40;Discworld, #29&#41;</h3>
-                <img src="https://d.gr-assets.com/books/1320518310m/47989.jpg">
-                <p>Averege rating: 4.27</p>
-                <p>ISBN: 055215430X</p>
-                <button class="btn btn-info">Read description</button>
-                <button class="btn btn-success">Add to Cart</button>
-            </div>
-            <div class="col-xs-4">
-                <h3>Good Omens: The Nice and Accurate Prophecies of Agnes Nutter, Witch</h3>
-                <img src="https://d.gr-assets.com/books/1392528568m/12067.jpg">
-                <p>Averege rating: 4.27</p>
-                <p>ISBN: 60853980</p>
-                <button class="btn btn-info">Read description</button>
-                <button class="btn btn-success">Add to Cart</button>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-xs-12">
-                <h1>Shopping cart:</h1>
-                <div id="books-container">
-                    <div class="col-xs-4">
-                        <h3>Night Watch &amp; &#35;40;Discworld, #29&#41;</h3>
-                        <img src="https://d.gr-assets.com/books/1320518310m/47989.jpg">
-                        <p>Averege rating: 4.27</p>
-                        <p>ISBN: 055215430X</p>
-                        <button class="btn btn-warning">Remove from cart</button>
-                    </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Shopping cart:</h1>
+            <div id="books-container">
+                <div class="col-xs-4">
+                    <h3>Night Watch &amp; &#35;40;Discworld, #29&#41;</h3>
+                    <img src="https://d.gr-assets.com/books/1320518310m/47989.jpg">
+                    <p>Averege rating: 4.27</p>
+                    <p>ISBN: 055215430X</p>
+                    <button class="btn btn-warning">Remove from cart</button>
                 </div>
-                <p>Total number of pages in cart: </p>
             </div>
+            <p>Total number of pages in cart: </p>
         </div>
     </div>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
+    <script id="entry-template" type="text/x-handlebars-template">
+        {{#each book}}
+            <div class="row">
+                <div class="col-xs-4">
+                    <h3>{{this.title}}</h3>
+                    <img src="{{this.image_url}}">
+                    <p>Average rating: {{this.average_rating}}</p>
+                    <p>ISBN: {{this.isbn}}</p>
+                    <button class="btn btn-info">Read description</button>
+                    <button class="btn btn-success">Add to Cart</button>
+                </div>
+            </div>
+        {{/each}}
+    </script>
+    <script src="app.js"></script>
 </body>
 </html>
